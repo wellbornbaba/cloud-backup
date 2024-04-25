@@ -17,22 +17,28 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
 
    ```bash
    git clone https://github.com/wellbornbaba/cloud-backup.git
-   
+
+   ```
+
 2. Navigate to the project directory:
 
    ```bash
    cd cloud-backup
 
+   ```
+
 3. Install the required dependencies:
 
    ```bash
    pip install -r requirements.txt
-   
+
+   ```
+
 ## Configuration
 
 1. Create a .env file in the root directory of the project:
 
-   ```plaintext
+   ````plaintext
    DROPBOX_TOKEN=YOUR_DROPBOX_ACCESS_TOKEN
    GITHUB_TOKEN=YOUR_GITHUB_ACCESS_TOKEN
    REPO_NAME=repository_name
@@ -47,7 +53,8 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
    SMTP_PASSWORD=YOUR_SMTP_PASSWORD
    SMTP_PORT=YOUR_SMTP_PORT
    SMTP_PROTOCOL=YOUR_SMTP_PROTOCOL  # "tls" or "ssl"
-   
+
+update this setting
    ```python
    # main.py
 
@@ -63,6 +70,7 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
 
    if __name__ == "__main__":
       main()
+   
 
 Replace placeholders with your actual credentials and configuration options.
 
@@ -70,15 +78,10 @@ Replace placeholders with your actual credentials and configuration options.
 
    ```python
    uploader.uploadwith = ["gdrive", "dropbox", "github"]  # Use Google Drive, Dropbox, and GitHub
-
-## Usage
-
-Run the main.py script to start the upload process:
-   ```python
-   python main.py
+   ```
 
 ## License
-   This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgements
 -python-dotenv
@@ -90,3 +93,14 @@ Run the main.py script to start the upload process:
 -smtplib
 
 
+## Usage
+
+Run the main.py script to start the upload process:
+
+   ```python
+   python main.py
+
+
+
+
+```
