@@ -33,8 +33,6 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
 1. Create a .env file in the root directory of the project:
 
    ```plaintext
-   FILE_PATH=path_to_your_file
-   FILE_NAME=example.txt
    DROPBOX_TOKEN=YOUR_DROPBOX_ACCESS_TOKEN
    GITHUB_TOKEN=YOUR_GITHUB_ACCESS_TOKEN
    REPO_NAME=repository_name
@@ -49,6 +47,23 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
    SMTP_PASSWORD=YOUR_SMTP_PASSWORD
    SMTP_PORT=YOUR_SMTP_PORT
    SMTP_PROTOCOL=YOUR_SMTP_PROTOCOL  # "tls" or "ssl"
+   
+   ```python
+   # main.py
+
+   import os
+   from MultiUploader import MultiUploader
+
+   def main():
+      file_path = os.getenv("FILE_PATH")
+      file_name = os.getenv("FILE_NAME")
+      emaillist = []  # Your email list
+      uploader = MultiUploader(file_path, file_name, emaillist)
+      uploader.start_upload()
+
+   if __name__ == "__main__":
+      main()
+
 Replace placeholders with your actual credentials and configuration options.
 
 2. Customize the uploadwith attribute in main.py to specify which upload services to use. For example:
@@ -59,10 +74,19 @@ Replace placeholders with your actual credentials and configuration options.
 ## Usage
 
 Run the main.py script to start the upload process:
-   
    ```python
    python main.py
 
-   
+## License
+   This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+-python-dotenv
+-pydrive
+-dropbox
+-PyGithub
+-onedrivesdk
+-ftplib
+-smtplib
 
 
