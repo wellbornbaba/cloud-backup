@@ -1,4 +1,4 @@
-import os
+from os import getenv, path
 import threading
 from dotenv import load_dotenv
 import dropbox
@@ -16,26 +16,29 @@ from email import encoders
 class MultiUploader:
     def __init__(self, file_path, file_name="", emaillist=[]):
         load_dotenv()  # Load environment variables from .env file
-
+        if not path.exists(file_path):
+            print("File does not exists")
+            return True
+        
         if not file_name:
-            file_name = os.path.splitext(os.path.basename(file_path))[0]
+            file_name = path.splitext(path.basename(file_path))[0]
 
         self.file_path = file_path
         self.file_name = file_name
-        self.dropbox_token = os.getenv("DROPBOX_TOKEN")
-        self.github_token = os.getenv("GITHUB_TOKEN")
-        self.repo_name = os.getenv("REPO_NAME")
-        self.onedrive_client_id = os.getenv("ONEDRIVE_CLIENT_ID")
-        self.onedrive_client_secret = os.getenv("ONEDRIVE_CLIENT_SECRET")
-        self.onedrive_refresh_token = os.getenv("ONEDRIVE_REFRESH_TOKEN")
-        self.ftp_host = os.getenv("FTP_HOST")
-        self.ftp_username = os.getenv("FTP_USERNAME")
-        self.ftp_password = os.getenv("FTP_PASSWORD")
-        self.smtp_host = os.getenv("SMTP_HOST")
-        self.smtp_username = os.getenv("SMTP_USERNAME")
-        self.smtp_password = os.getenv("SMTP_PASSWORD")
-        self.smtp_port = os.getenv("SMTP_PORT")
-        self.smtp_protocol = os.getenv("SMTP_PROTOCOL").lower()
+        self.dropbox_token = getenv("DROPBOX_TOKEN")
+        self.github_token = getenv("GITHUB_TOKEN")
+        self.repo_name = getenv("REPO_NAME")
+        self.onedrive_client_id = getenv("ONEDRIVE_CLIENT_ID")
+        self.onedrive_client_secret = getenv("ONEDRIVE_CLIENT_SECRET")
+        self.onedrive_refresh_token = getenv("ONEDRIVE_REFRESH_TOKEN")
+        self.ftp_host = getenv("FTP_HOST")
+        self.ftp_username = getenv("FTP_USERNAME")
+        self.ftp_password = getenv("FTP_PASSWORD")
+        self.smtp_host = getenv("SMTP_HOST")
+        self.smtp_username = getenv("SMTP_USERNAME")
+        self.smtp_password = getenv("SMTP_PASSWORD")
+        self.smtp_port = getenv("SMTP_PORT")
+        self.smtp_protocol = getenv("SMTP_PROTOCOL").lower()
         self.emaillist = emaillist
         # set which upload should be use ALL is for all
         self.uploadwith = []  # list name e.g gdrive,github if empty use all
@@ -143,6 +146,7 @@ class MultiUploader:
 
     # Function to start upload threads
     def start_upload(self):
+        print(self.uploadwith)
         threads = [
             threading.Thread(target=self.upload_to_google_drive),
             threading.Thread(target=self.upload_to_dropbox),
@@ -167,9 +171,9 @@ class MultiUploader:
 
 
 if __name__ == "__main__":
-    file_path = "path_to_your_file"
-    file_name = "example.txt"
-    emaillist = ["recipient1@example.com", "recipient2@example.com"]
+    file_path = r"path_to_your_file"
+    file_name = ""
+    emaillist = ["notme575@yahoo.com", "run.file@yahoo.com"]
     uploader = MultiUploader(file_path, file_name, emaillist)
-    uploader.uploadwith = ["gdrive", "dropbox", "github"]  # Use Google Drive, Dropbox, and empty for all
+    uploader.uploadwith = ["gdrive", "dropbox", "github", "ftp", "smtp"]  # Use Google Drive, Dropbox, and empty for all
     uploader.start_upload()
