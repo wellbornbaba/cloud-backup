@@ -15,4 +15,5 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
 
 1. Clone the repository to your local machine:
 
-   ```bash git clone https://github.com/your_username/MultiUploader.git
+   ```bash
+   git clone https://github.com/your_username/MultiUploader.git
