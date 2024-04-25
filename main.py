@@ -171,4 +171,5 @@ if __name__ == "__main__":
     file_name = "example.txt"
     emaillist = ["recipient1@example.com", "recipient2@example.com"]
     uploader = MultiUploader(file_path, file_name, emaillist)
+    uploader.uploadwith = ["gdrive", "dropbox", "github"]  # Use Google Drive, Dropbox, and empty for all
     uploader.start_upload()
