@@ -54,7 +54,7 @@ MultiUploader is a Python tool that allows you to simultaneously upload files to
    SMTP_PORT=YOUR_SMTP_PORT
    SMTP_PROTOCOL=YOUR_SMTP_PROTOCOL  # "tls" or "ssl"
 
-update this setting
+2. update this setting
    ```python
    # main.py
 
@@ -70,27 +70,25 @@ update this setting
 
    if __name__ == "__main__":
       main()
-   
 
 Replace placeholders with your actual credentials and configuration options.
 
-2. Customize the uploadwith attribute in main.py to specify which upload services to use. For example:
+3. Customize the uploadwith attribute in main.py to specify which upload services to use. For example:
 
    ```python
-   uploader.uploadwith = ["gdrive", "dropbox", "github"]  # Use Google Drive, Dropbox, and GitHub
-   ```
+   uploader.uploadwith = ["gdrive", "dropbox", "github"]  # Use Google Drive, Dropbox, and empty for all
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgements
--python-dotenv
--pydrive
--dropbox
--PyGithub
--onedrivesdk
--ftplib
--smtplib
+-python-dotenv.
+-pydrive.
+-dropbox.
+-PyGithub.
+-onedrivesdk.
+-ftplib.
+-smtplib.
 
 
 ## Usage
@@ -99,8 +97,3 @@ Run the main.py script to start the upload process:
 
    ```python
    python main.py
-
-
-
-
-```
